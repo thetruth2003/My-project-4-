@@ -4,7 +4,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(Item))]
 public class Collectable : MonoBehaviour
-{
+{ 
+    GameManager gameManager;
     private void OnTriggerEnter(Collider collision)
     {
         Player player = collision.gameObject.GetComponent<Player>();

@@ -22,9 +22,24 @@ public class Crosshair : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, maxDistance, interactableLayer))
         {
-            // Etkileşime geçilecek nesneye ulaş
+            // Etkileşimli nesneye ulaşılabilir
             Debug.Log("Etkileşim: " + hit.collider.name);
-            // Burada nesne ile etkileşim kodunu ekleyebilirsin
+
+            // Item bileşeni olup olmadığını kontrol et
+            Item item = hit.collider.GetComponent<Item>();
+
+            if (item != null)
+            {
+                // Item varsa, oyuncuya ver
+                Player player = FindObjectOfType<Player>(); // Oyuncuyu buluyoruz
+
+                if (player != null)
+                {
+                    // Item'ı envantere ekleyip objeyi yok ediyoruz
+                    player.inventoryManager.Add("backpack", item);
+                    Destroy(hit.collider.gameObject); // Item'ı topladığımızda item objesini yok et
+                }
+            }
         }
     }
 }
