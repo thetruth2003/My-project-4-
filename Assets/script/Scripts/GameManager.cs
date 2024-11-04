@@ -27,10 +27,34 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
 
+        // Bileşenlerin atanıp atanmadığını kontrol ediyoruz
         itemManager = GetComponent<ItemManager>();
+        if (itemManager == null)
+        {
+            Debug.LogWarning("GameManager: ItemManager bileşeni atanmadı!");
+        }
+
         tileManager = GetComponent<TileManager>();
+        if (tileManager == null)
+        {
+            Debug.LogWarning("GameManager: TileManager bileşeni atanmadı!");
+        }
+
         uiManager = GetComponent<UI_Manager>();
+        if (uiManager == null)
+        {
+            Debug.LogWarning("GameManager: UI_Manager bileşeni atanmadı!");
+        }
 
         player = FindObjectOfType<Player>();
+        if (player == null)
+        {
+            Debug.LogWarning("GameManager: Oyuncu (Player) nesnesi sahnede bulunamadı!");
+        }
+
+        if (toolbarUI == null)
+        {
+            Debug.LogWarning("GameManager: Toolbar_UI referansı atanmadı!");
+        }
     }
 }

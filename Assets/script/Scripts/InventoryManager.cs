@@ -14,7 +14,6 @@ public class InventoryManager : MonoBehaviour
     public Inventory toolbar;
     public int toolbarSlotsCount = 9;
 
-
     private void Awake()
     {
         backpack = new Inventory(backpackSlotsCount);

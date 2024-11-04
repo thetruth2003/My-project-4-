@@ -15,21 +15,51 @@ public class Slot_UI : MonoBehaviour
     public Inventory.Slot inventorySlot; // inventorySlot referansı
     public string itemName; // Item ismi için özellik
 
+    private void Awake()
+    {
+        // Null referans kontrolleri
+        if (itemIcon == null)
+        {
+            Debug.LogError("Slot_UI: itemIcon atanmamış!");
+        }
+        if (quantityText == null)
+        {
+            Debug.LogError("Slot_UI: quantityText atanmamış!");
+        }
+        if (highlight == null)
+        {
+            Debug.LogWarning("Slot_UI: highlight nesnesi atanmamış. Highlight fonksiyonu düzgün çalışmayabilir.");
+        }
+    }
+
     public void SetItem(Inventory.Slot slot)
     {
         inventorySlot = slot; // inventorySlot'u burada güncelle
-        itemIcon.sprite = slot.icon;
-        itemIcon.color = new Color(1, 1, 1, 1);
-        quantityText.text = slot.count.ToString();
-        
+
+        if (itemIcon != null)
+        {
+            itemIcon.sprite = slot.icon;
+            itemIcon.color = new Color(1, 1, 1, 1);
+        }
+        if (quantityText != null)
+        {
+            quantityText.text = slot.count.ToString();
+        }
     }
 
     public void SetEmpty()
     {
         inventorySlot = null; // inventorySlot'u boşalt
-        itemIcon.sprite = null;
-        itemIcon.color = new Color(1, 1, 1, 0);
-        quantityText.text = "";
+
+        if (itemIcon != null)
+        {
+            itemIcon.sprite = null;
+            itemIcon.color = new Color(1, 1, 1, 0);
+        }
+        if (quantityText != null)
+        {
+            quantityText.text = "";
+        }
     }
 
     public void SetHighlight(bool isOn)
@@ -37,7 +67,10 @@ public class Slot_UI : MonoBehaviour
         if (highlight != null)
         {
             highlight.SetActive(isOn);
-            
+        }
+        else
+        {
+            Debug.LogWarning("highlight nesnesi atanmadı.");
         }
     }
 }
