@@ -23,7 +23,6 @@ public class SC_FPSController : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         characterController = GetComponent<CharacterController>();
     }
 
