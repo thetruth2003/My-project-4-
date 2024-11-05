@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +7,8 @@ public class UI_Manager : MonoBehaviour
 {
     public Dictionary<string, Inventory_UI> inventoryUIByName = new Dictionary<string, Inventory_UI>();
     public List<Inventory_UI> inventoryUIs;
+    public GameObject inventoryUI; // Envanter UI nesnesi
+    public bool isInventoryOpen = false; // Envanterin açık olup olmadığını kontrol etmek için bir bayrak
 
     public GameObject inventoryPanel;
 
@@ -95,4 +97,26 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
+
+    // Envanteri açma fonksiyonu
+    public void OpenInventory()
+    {
+        inventoryUI.SetActive(true); // Envanter UI'sini göster
+        isInventoryOpen = true; // Bayrağı güncelle
+    }
+
+    // Envanteri kapama fonksiyonu
+    public void CloseInventory()
+    {
+        inventoryUI.SetActive(false); // Envanter UI'sini gizle
+        isInventoryOpen = false; // Bayrağı güncelle
+    }
+
+    // Envanterin açık olup olmadığını kontrol etme fonksiyonu
+    public bool IsInventoryOpen()
+    {
+        return isInventoryOpen;
+    }
+
+    // Diğer UI yönetimi ile ilgili fonksiyonlarınızı buraya ekleyebilirsiniz.
 }

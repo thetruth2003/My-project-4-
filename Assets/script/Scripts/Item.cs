@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,5 +14,11 @@ public class Item : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true; // Başlangıçta kinematik olarak ayarlanır
+    }
+
+    public void EnablePhysics()
+    {
+        rb.isKinematic = false; // Fiziksel kuvvetleri etkinleştir
     }
 }
