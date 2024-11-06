@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class SC_FPSController : MonoBehaviour
 {
-    public float walkingSpeed = 7.5f;
-    public float runningSpeed = 11.5f;
+    public float walkingSpeed = 3.0f;  // Yürüme hızı
+    public float runningSpeed = 6.0f;  // Koşma hızı
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
     public Camera playerCamera;
@@ -25,59 +25,46 @@ public class SC_FPSController : MonoBehaviour
 
     void Start()
     {
-<<<<<<< Updated upstream
-        characterController = GetComponent<CharacterController>();
-=======
-        //animator tan�mlama start
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        //animator tan�mlama end
-
-        // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
->>>>>>> Stashed changes
     }
 
     void Update()
     {
-        // We are grounded, so recalculate move direction based on axes
+        // İleri/geri hareket için yön hesapla
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-        // Press Left Shift to run
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+
+        // Koşma için tuş kontrolü
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);  // Shift'e basınca koşacak
+
+        // Yönlere bağlı hareket hızı
         float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
+
+        // Yükseklik hareketini (zıplama) koru
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
-        {
-            moveDirection.y = jumpSpeed;
-            animator.SetBool("isJumping", true);
-        }
-        else
-        {
-            moveDirection.y = movementDirectionY;
-            animator.SetBool("isJumping", false);
-        }
-
-        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-        // as an acceleration (ms^-2)
+        // Yerçekimi uygula
         if (!characterController.isGrounded)
         {
             moveDirection.y -= gravity * Time.deltaTime;
         }
 
-        // Move the controller
+        // Karakteri hareket ettir
         characterController.Move(moveDirection * Time.deltaTime);
 
-        float speed = new Vector3(characterController.velocity.x, 0 , characterController.velocity.z).magnitude;
+        // Speed'i hesapla
+        float speed = new Vector3(characterController.velocity.x, 0, characterController.velocity.z).magnitude;
+
+        // Speed parametresini ve koşma durumunu animator'a gönder
         animator.SetFloat("Speed", speed);
         animator.SetBool("isRunning", isRunning);
 
-        // Player and Camera rotation
+        // Player ve Kamera dönüşlerini kontrol et
         if (canMove)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
