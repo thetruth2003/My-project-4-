@@ -21,9 +21,22 @@ public class SC_FPSController : MonoBehaviour
     [HideInInspector]
     public bool canMove = true;
 
+    Animator animator;
+
     void Start()
     {
+<<<<<<< Updated upstream
         characterController = GetComponent<CharacterController>();
+=======
+        //animator tanýmlama start
+        characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+        //animator tanýmlama end
+
+        // Lock cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+>>>>>>> Stashed changes
     }
 
     void Update()
@@ -41,10 +54,12 @@ public class SC_FPSController : MonoBehaviour
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = jumpSpeed;
+            animator.SetBool("isJumping", true);
         }
         else
         {
             moveDirection.y = movementDirectionY;
+            animator.SetBool("isJumping", false);
         }
 
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
@@ -57,6 +72,10 @@ public class SC_FPSController : MonoBehaviour
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
+
+        float speed = new Vector3(characterController.velocity.x, 0 , characterController.velocity.z).magnitude;
+        animator.SetFloat("Speed", speed);
+        animator.SetBool("isRunning", isRunning);
 
         // Player and Camera rotation
         if (canMove)
