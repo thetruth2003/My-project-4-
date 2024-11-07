@@ -428,6 +428,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 446959415039947075, guid: 419df9b67f41a3d428ce7ed98ee08e2b, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1935702233071611290, guid: 419df9b67f41a3d428ce7ed98ee08e2b, type: 3}
       propertyPath: m_Controller
       value: 
@@ -484,13 +488,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1696304837315360024, guid: 419df9b67f41a3d428ce7ed98ee08e2b, type: 3}
+    - {fileID: 5032218071130756813, guid: 419df9b67f41a3d428ce7ed98ee08e2b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1935702233080962642, guid: 419df9b67f41a3d428ce7ed98ee08e2b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3734928730640579781}
+    - targetCorrespondingSourceObject: {fileID: 1935702233080962642, guid: 419df9b67f41a3d428ce7ed98ee08e2b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3734928730640579787}
   m_SourcePrefab: {fileID: 100100000, guid: 419df9b67f41a3d428ce7ed98ee08e2b, type: 3}
 --- !u!1 &3734928730640579780 stripped
 GameObject:
@@ -513,11 +522,28 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Armature'\n\tTransform 'Ring_2_L'\n\tTransform
+    'Index_1_L'\n\tTransform 'Thigh_R'\n\tTransform 'Arm_R'\n\tTransform 'Index_2_L'\n\tTransform
+    'Index_1_R'\n\tTransform 'Shoulder_L'\n\tTransform 'Pinky_2_L'\n\tTransform 'Foot_L'\n\tand
+    more ...\n\tFrom animation clip 'mixamo.com'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3734928730640579787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3734928730640579780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac73283ba52d614b856ba62f9f9483f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
